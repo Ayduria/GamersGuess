@@ -1,10 +1,9 @@
 package uqac.dim.gamersguess;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +13,7 @@ import uqac.dim.gamersguess.persistance.QuizBD;
 import uqac.dim.gamersguess.persistance.Reponse;
 import uqac.dim.gamersguess.persistance.Score;
 
-public class MainActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity {
 
     private QuizBD bd;
     private Question question;
@@ -24,13 +23,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_quiz);
 
         bd = QuizBD.getDatabase(getApplicationContext());
-        test();
+        //displayTest();
     }
 
-    private void test() {
+    /*private void displayTest() {
         TextView question = (TextView)findViewById(R.id.testQuestion);
         TextView reponse1 = (TextView)findViewById(R.id.testReponse1);
         TextView reponse2 = (TextView)findViewById(R.id.testReponse2);
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(reponses.get(noReponse).choixReponse);
             noReponse++;
         }
-    }
+    }*/
 
     @Override
     protected void onDestroy() {

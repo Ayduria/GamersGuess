@@ -5,19 +5,43 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.GamersGuess">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".MainMenuActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".DifficultyChoiceActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".QuizActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".QuizResultActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".PauseMenuActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".LeaderboardActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
