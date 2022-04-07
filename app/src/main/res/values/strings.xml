@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Gamer\'s Guess</string>
+
+    // string textview
+    <string name="difficulty_textview">Choisissez votre difficulté </string>
+    <string name="leaderboard_title">Leaderboard </string>
+
+    <string name="leaderboardPlayer1">Joueur 1 </string>
+    <string name="leaderboardPlayer2">Joueur 2 </string>
+    <string name="leaderboardPlayer3">Joueur 3 </string>
+    <string name="leaderboardPlayer4">Joueur 4 </string>
+    <string name="leaderboardPlayer5">Joueur 5 </string>
+
+    <string name="leaderboardScore1">Score 1 </string>
+    <string name="leaderboardScore2">Score 2 </string>
+    <string name="leaderboardScore3">Score 3 </string>
+    <string name="leaderboardScore4">Score 4 </string>
+    <string name="leaderboardScore5">Score 5 </string>
+
+    leaderboardScore1
+
+
+    // string button
+    <string name="button_easy">Facile</string>
+    <string name="button_medium">Intermédiaire</string>
+    <string name="button_hard">Difficile</string>
+
+
+
 </resources>

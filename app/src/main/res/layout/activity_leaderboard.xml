@@ -2,6 +2,80 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#99999F"
+    android:gravity="center">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Leaderboard"
+        android:textAlignment="center"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="5"
+        android:columnCount="2"
+        />
+
+    <TextView
+        android:id="@+id/leaderboardPlayer1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardPlayer1"
+        />
+
+    <TextView
+        android:id="@+id/leaderboardScore1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardScore1" />
+
+    <TextView
+        android:id="@+id/leaderboardPlayer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardPlayer2"/>
+    <TextView
+        android:id="@+id/leaderboardScore2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardScore2"/>
+
+    <TextView
+        android:id="@+id/leaderboardPlayer3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardPlayer3"/>
+    <TextView
+        android:id="@+id/leaderboardScore3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardScore3"/>
+
+    <TextView
+        android:id="@+id/leaderboardPlayer4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardPlayer4"/>
+    <TextView
+        android:id="@+id/leaderboardScore4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardScore4"/>
+
+    <TextView
+        android:id="@+id/leaderboardPlayer5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardPlayer5"/>
+    <TextView
+        android:id="@+id/leaderboardScore5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboardScore5"/>
+
 
 </LinearLayout>

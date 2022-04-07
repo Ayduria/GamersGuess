@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#99999F">
+
+    <TextView
+        android:id="@+id/difficulty_textview"
+        android:layout_width="match_parent"
+        android:layout_height="168dp"
+        android:text="@string/difficulty_textview" />
+
+    <Button
+        android:id="@+id/Button_easy"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:text="@string/button_easy" />
+
+    <Button
+        android:id="@+id/Button_medium"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:text="@string/button_medium" />
+
+    <Button
+        android:id="@+id/Button_hard"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:text="@string/button_hard" />
 
 </LinearLayout>
