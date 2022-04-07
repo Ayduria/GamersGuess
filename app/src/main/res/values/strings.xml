@@ -6,6 +6,7 @@
     // string textview
     <string name="difficulty_textview">CHOISISSEZ VOTRE DIFFICULTÉ</string>
     <string name="leaderboard_title">Leaderboard </string>
+    <string name="pause_menu">PAUSE</string>
 
     <string name="leaderboardPlayer1">Joueur 1 </string>
     <string name="leaderboardPlayer2">Joueur 2 </string>

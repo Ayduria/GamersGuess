@@ -9,14 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Leaderboard"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        style="@style/Theme.GamersGuess.activityHeader"/>
 
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rowCount="5"
         android:columnCount="2"
-        />
+        >
 
     <TextView
         android:id="@+id/leaderboardPlayer1"
@@ -74,6 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/leaderboardScore5"/>
+    </GridLayout>
 
 
 </LinearLayout>
