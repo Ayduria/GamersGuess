@@ -4,20 +4,18 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#99999F"
     android:paddingTop="10dp">
 
     <TextView
-        android:id="@+id/testQuestion"
+        android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="30dp"
-        android:background="#99999F"
         android:text="Question" />
 
 
         <TextView
-            android:id="@+id/testReponse1"
+            android:id="@+id/reponse1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="35dp"
@@ -30,7 +28,7 @@
             android:textAlignment="center"/>
 
         <TextView
-            android:id="@+id/testReponse2"
+            android:id="@+id/reponse2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="35dp"
@@ -43,7 +41,7 @@
             android:textAlignment="center"/>
 
         <TextView
-            android:id="@+id/testReponse3"
+            android:id="@+id/reponse3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="35dp"
@@ -56,7 +54,7 @@
             android:textAlignment="center"/>
 
         <TextView
-            android:id="@+id/testReponse4"
+            android:id="@+id/reponse4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="35dp"
@@ -67,8 +65,5 @@
             android:background="@drawable/bg_rounded"
             android:text="Réponse 4"
             android:textAlignment="center"/>
-        />
-
-
 
 </LinearLayout>
