@@ -21,10 +21,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="35dp"
-            android:paddingLeft="200dp"
-            android:paddingRight="200dp"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
             android:paddingBottom="35dp"
-            android:background="#4CAF50"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rounded"
             android:text="Réponse 1"
             android:textAlignment="center"/>
 
@@ -33,10 +34,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="35dp"
-            android:paddingLeft="200dp"
-            android:paddingRight="200dp"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
             android:paddingBottom="35dp"
-            android:background="#F44336"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rounded"
             android:text="Réponse 2"
             android:textAlignment="center"/>
 
@@ -45,10 +47,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="35dp"
-            android:paddingLeft="200dp"
-            android:paddingRight="200dp"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
             android:paddingBottom="35dp"
-            android:background="#2196F3"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rounded"
             android:text="Réponse 3"
             android:textAlignment="center"/>
 
@@ -57,10 +60,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="35dp"
-            android:paddingLeft="200dp"
-            android:paddingRight="200dp"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
             android:paddingBottom="35dp"
-            android:background="#FFEB3B"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rounded"
             android:text="Réponse 4"
             android:textAlignment="center"/>
         />
