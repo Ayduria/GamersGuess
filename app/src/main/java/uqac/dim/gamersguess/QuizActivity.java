@@ -43,6 +43,16 @@ public class QuizActivity extends AppCompatActivity {
                 break;
         }
 
+        Button pauseButton = (Button)findViewById(R.id.pause_button);
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("DIM", "Play game");
+
+            startActivity(new Intent(QuizActivity.this, PauseMenuActivity.class));
+            }
+        });
+
         displayTest();
     }
 
