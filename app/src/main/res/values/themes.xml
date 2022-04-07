@@ -2,6 +2,17 @@
     <!-- Base application theme. -->
     <style name="Theme.GamersGuess" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/background</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/league_spartan</item>
+    </style>
+
+    <style name="Theme.GamersGuess.gameName">
+        <item name="android:textSize">50dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/broken_console</item>
+    </style>
+
+    <style name="Theme.GamersGuess.activityHeader">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 </resources>

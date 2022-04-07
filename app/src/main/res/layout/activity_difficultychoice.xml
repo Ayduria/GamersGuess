@@ -3,30 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/difficulty_textview"
         android:layout_width="match_parent"
-        android:layout_height="168dp"
-        android:text="@string/difficulty_textview" />
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:gravity="center"
+        android:text="@string/difficulty_textview"
+        style="@style/Theme.GamersGuess.activityHeader"/>
 
     <Button
         android:id="@+id/Button_easy"
         android:layout_width="match_parent"
-        android:layout_height="99dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:background="@drawable/bg_rounded"
+        android:layout_marginBottom="15dp"
         android:text="@string/button_easy" />
 
     <Button
         android:id="@+id/Button_medium"
         android:layout_width="match_parent"
-        android:layout_height="99dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:background="@drawable/bg_rounded"
+        android:layout_marginBottom="15dp"
         android:text="@string/button_medium" />
 
     <Button
         android:id="@+id/Button_hard"
         android:layout_width="match_parent"
-        android:layout_height="99dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:background="@drawable/bg_rounded"
         android:text="@string/button_hard" />
 
 </LinearLayout>

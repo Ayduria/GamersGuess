@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Gamer\'s Guess</string>
 
+    <string name="game_name">GAMER\'S\nGUESS</string>
+
     // string textview
-    <string name="difficulty_textview">Choisissez votre difficulté </string>
+    <string name="difficulty_textview">CHOISISSEZ VOTRE DIFFICULTÉ</string>
     <string name="leaderboard_title">Leaderboard </string>
 
     <string name="leaderboardPlayer1">Joueur 1 </string>
