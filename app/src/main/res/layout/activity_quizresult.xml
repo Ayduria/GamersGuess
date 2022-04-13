@@ -2,6 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/final_score_header"
+        style="@style/Theme.GamersGuess.scoreHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginBottom="30dp"
+        android:text="@string/finalScore"/>
+
+    <TextView
+        android:id="@+id/final_score"
+        style="@style/Theme.GamersGuess.activityHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="@string/leaderboardScore"/>
+
+    <Button
+        android:id="@+id/menu_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rounded"
+        android:padding="20dp"
+        android:text="@string/backToMenu"/>
 
 </LinearLayout>

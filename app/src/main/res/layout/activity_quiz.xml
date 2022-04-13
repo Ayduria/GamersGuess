@@ -1,71 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp">
 
-<Button
-    android:id="@+id/pause_button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="top|right"
-    android:background="@drawable/bg_rounded"
-    android:text="Pause" />
+    <ImageButton
+        android:id="@+id/pause_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/pause_icon"
+        android:contentDescription="@string/pause_menu" />
 
     <TextView
         android:id="@+id/question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        android:gravity="center"
         style="@style/Theme.GamersGuess.activityHeader"
-        android:text="Question" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/reponses"
+        android:layout_below="@id/pause_button"
+        android:gravity="center"
+        android:text="@string/question" />
 
+    <LinearLayout
+        android:id="@+id/reponses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/reponse1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/bg_rounded"
             android:gravity="center"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
+            android:text="@string/reponse"/>
+
+        <Button
+            android:id="@+id/reponse2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:background="@drawable/bg_rounded"
-            android:text="Réponse 1" />
+            android:gravity="center"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:text="@string/reponse" />
 
-    <Button
-        android:id="@+id/reponse2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bg_rounded"
-        android:text="Réponse 2" />
+        <Button
+            android:id="@+id/reponse3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/bg_rounded"
+            android:gravity="center"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:text="@string/reponse" />
 
-    <Button
-        android:id="@+id/reponse3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bg_rounded"
-        android:text="Réponse 3" />
+        <Button
+            android:id="@+id/reponse4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rounded"
+            android:gravity="center"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:text="@string/reponse" />
 
-    <Button
-        android:id="@+id/reponse4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
-        android:background="@drawable/bg_rounded"
-        android:text="Réponse 4" />
-
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

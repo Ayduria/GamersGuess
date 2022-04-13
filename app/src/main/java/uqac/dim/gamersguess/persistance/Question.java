@@ -24,8 +24,4 @@ public class Question {
         this.question = question;
         this.difficulte = difficulte;
     }
-
-    public Integer getQuestionId() {
-        return id;
-    }
 }

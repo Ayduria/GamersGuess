@@ -48,5 +48,6 @@ public class DifficultyChoiceActivity extends AppCompatActivity {
         Intent intent = new Intent(DifficultyChoiceActivity.this, QuizActivity.class);
         intent.putExtra("difficulty", difficulty);
         startActivity(intent);
+        finish();
     }
 }
