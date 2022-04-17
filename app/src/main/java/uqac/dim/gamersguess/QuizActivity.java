@@ -70,7 +70,7 @@ public class QuizActivity extends AppCompatActivity {
         // Get sounds
         goodAnswerSound = MediaPlayer.create(this,R.raw.good_answer);
         wrongAnswerSound = MediaPlayer.create(this,R.raw.wrong_answer);
-        timesUpSound = MediaPlayer.create(this, R.raw.times_up_sound);
+        //timesUpSound = MediaPlayer.create(this, R.raw.times_up_sound);
 
         // Get question field and answer buttons
         questionDisplay = (TextView)findViewById(R.id.question);
