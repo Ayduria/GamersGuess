@@ -20,8 +20,13 @@ public class Score {
     @ColumnInfo(name = "nom")
     public String nom;
 
-    public Score(@NonNull Integer score, @NonNull String nom) {
+    @NonNull
+    @ColumnInfo(name = "difficulte")
+    public String difficulte;
+
+    public Score(@NonNull Integer score, @NonNull String nom, @NonNull String difficulte) {
         this.score = score;
         this.nom = nom;
+        this.difficulte = difficulte;
     }
 }

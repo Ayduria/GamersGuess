@@ -174,14 +174,17 @@ public class QuizActivity extends AppCompatActivity {
             Log.i("DIM", "Good answer");
             goodAnswerSound.start();
             clickedButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.MULTIPLY));
-            comboPtsMultiplier++;
             ptsTotal += 5 * difficultyPtsMultiplier * comboPtsMultiplier;
+            comboPtsMultiplier++;
 
         } else {
             Log.i("DIM", "Bad answer");
             wrongAnswerSound.start();
+            Button rightButton = getGoodAnswerButton();
             clickedButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.badAnswerBtn), PorterDuff.Mode.MULTIPLY));
-            comboPtsMultiplier = 0;
+            rightButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.MULTIPLY));
+            rightButton.setTextColor(Color.parseColor("#ffffff"));
+            comboPtsMultiplier = 1;
         }
 
         questionIndex++;
@@ -203,9 +206,22 @@ public class QuizActivity extends AppCompatActivity {
     resetTimer();
     }
 
+    private Button getGoodAnswerButton() {
+        Button goodButton = null;
+
+        for(Button button : reponsesBtn) {
+            Reponse reponse = (Reponse)button.getTag();
+            if(reponse.bonneReponse == 1)
+                goodButton = button;
+        }
+
+        return goodButton;
+    }
+
     private void displayResult() {
         Intent intent = new Intent(QuizActivity.this, QuizResultActivity.class);
         intent.putExtra("score", ptsTotal);
+        intent.putExtra("difficulte", difficulty);
         startActivity(intent);
         finish();
 
@@ -275,5 +291,10 @@ public class QuizActivity extends AppCompatActivity {
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText();
     }
-
+  
+    @Override
+    protected void onDestroy() {
+        QuizBD.destroyInstance();
+        super.onDestroy();
+    }
 }
