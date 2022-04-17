@@ -1,24 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.GamersGuess" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowBackground">#009688</item>
         <item name="android:fontFamily">@font/league_spartan</item>
     </style>
 
     <style name="Theme.GamersGuess.gameName">
-        <item name="android:textSize">50dp</item>
+        <item name="android:textSize">50sp</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:fontFamily">@font/broken_console</item>
     </style>
 
-    <style name="Theme.GamersGuess.scoreHeader">
-        <item name="android:textSize">30dp</item>
-        <item name="android:textColor">#FFFFFF</item>
+    <style name="Theme.GamersGuess.score">
+        <item name="android:textSize">60sp</item>
+        <item name="android:textColor">#FFEB3B</item>
+        <item name="android:shadowColor">#FFFFFF</item>
+        <item name="android:shadowDx">10</item>
+        <item name="android:shadowDy">10</item>
+        <item name="android:shadowRadius">1</item>
         <item name="android:fontFamily">@font/broken_console</item>
     </style>
 
     <style name="Theme.GamersGuess.activityHeader">
-        <item name="android:textSize">22dp</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
 </resources>

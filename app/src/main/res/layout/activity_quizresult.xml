@@ -7,21 +7,60 @@
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/final_score_header"
-        style="@style/Theme.GamersGuess.scoreHeader"
+        android:id="@+id/score_txt"
+        style="@style/Theme.GamersGuess.activityHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/leaderboardScore"/>
+
+    <TextView
+        android:id="@+id/final_score"
+        style="@style/Theme.GamersGuess.score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/finalScore"/>
+
+    <TextView
+        android:id="@+id/highscore"
+        style="@style/Theme.GamersGuess.activityHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:layout_marginBottom="30dp"
-        android:text="@string/finalScore"/>
+        android:text="@string/highScore"/>
+
+    <EditText
+        android:id="@+id/input_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginBottom="20dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:background="@drawable/input_background"
+        android:hint="@string/enterName"
+        android:importantForAutofill="no"/>
+
+    <Button
+        android:id="@+id/submit_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_rounded"
+        android:padding="20dp"
+        android:text="@string/submitScore"/>
 
     <TextView
-        android:id="@+id/final_score"
+        android:id="@+id/score_submitted"
         style="@style/Theme.GamersGuess.activityHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:layout_marginBottom="30dp"
-        android:text="@string/leaderboardScore"/>
+        android:textColor="#4FE455"
+        android:visibility="gone"
+        android:text="@string/scoreSubmitted"/>
 
     <Button
         android:id="@+id/menu_btn"

@@ -17,7 +17,12 @@
     <string name="question">Question</string>
     <string name="reponse">Réponse </string>
 
-    <string name="finalScore">Score final</string>
+    <string name="enterName">Entrez votre nom</string>
+    <string name="finalScore">950</string>
+    <string name="highScore">Meilleur:</string>
+    <string name="newHighscore">Nouveau meilleur score !</string>
+    <string name="submitScore">Soumettre le score</string>
+    <string name="scoreSubmitted">Le score a été ajouté au leaderboard !</string>
 
     <string name="leaderboard_title">Leaderboard</string>
     <string name="leaderboardPlayer">Nom du joueur</string>
