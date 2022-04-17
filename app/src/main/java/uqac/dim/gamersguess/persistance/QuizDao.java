@@ -1,5 +1,8 @@
 package uqac.dim.gamersguess.persistance;
 
+import android.database.Cursor;
+
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,6 +30,9 @@ public interface QuizDao {
 
     @Query("SELECT * FROM scores ORDER BY score DESC")
     List<Score> getAllScores();
+
+    @Query("SELECT * FROM scores ORDER BY score DESC LIMIT 1")
+    Score getHighScore();
 
     @Query("delete from scores")
     void deleteScores();
