@@ -8,6 +8,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -46,6 +47,16 @@ public class QuizActivity extends AppCompatActivity {
 
     MediaPlayer goodAnswerSound;
     MediaPlayer wrongAnswerSound;
+    MediaPlayer timesUpSound;
+
+    // For the timer
+    private TextView qTimer;
+    private static final long START_TIME_IN_MILLIS = 10000;
+
+    private CountDownTimer mCountDownTimer;
+    private boolean mTimerRunning;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +64,13 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
+        // Get timer
+        qTimer = (TextView) findViewById(R.id.timer);
+
         // Get sounds
         goodAnswerSound = MediaPlayer.create(this,R.raw.good_answer);
         wrongAnswerSound = MediaPlayer.create(this,R.raw.wrong_answer);
+        timesUpSound = MediaPlayer.create(this, R.raw.times_up_sound);
 
         // Get question field and answer buttons
         questionDisplay = (TextView)findViewById(R.id.question);
@@ -112,6 +127,12 @@ public class QuizActivity extends AppCompatActivity {
                 Log.i("DIM", "Paused game");
 
             startActivity(new Intent(QuizActivity.this, PauseMenuActivity.class));
+
+                if(mTimerRunning)
+                {
+                    pauseTimer();
+                }
+
             }
         });
     }
@@ -136,6 +157,10 @@ public class QuizActivity extends AppCompatActivity {
             button.setClickable(true);
             noReponse++;
         }
+
+        //Timer
+        startTimer();
+
     }
 
     private void manageAnswer(Button clickedButton) {
@@ -163,16 +188,22 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         questionIndex++;
+        pauseTimer();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (questionIndex < questions.size())
                     displayQuestion();
-                else
-                    displayResult();
+
+                else{
+                    displayResult();}
+
             }
+
         }, 800);
 
+    resetTimer();
     }
 
     private Button getGoodAnswerButton() {
@@ -193,6 +224,7 @@ public class QuizActivity extends AppCompatActivity {
         intent.putExtra("difficulte", difficulty);
         startActivity(intent);
         finish();
+
     }
 
     public void onBackPressed() {
@@ -208,6 +240,58 @@ public class QuizActivity extends AppCompatActivity {
                 .show();
     }
 
+    private void startTimer(){
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+               mTimeLeftInMillis = millisUntilFinished;
+               updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+                mCountDownTimer.cancel();
+                timesUpSound.start();
+
+                questionIndex++;
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (questionIndex < questions.size())
+                            displayQuestion();
+
+                        else{
+                            displayResult();}
+                    }
+
+                }, 500);
+
+                resetTimer();
+            }
+
+        }.start();
+
+        mTimerRunning = true;
+    }
+
+    private void updateCountDownText(){
+
+        qTimer.setText("Temps Restant : " + mTimeLeftInMillis / 1000 );
+
+    }
+
+    private void pauseTimer(){
+        mCountDownTimer.cancel();
+        mTimerRunning = false;
+    }
+
+    private void resetTimer(){
+        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        updateCountDownText();
+    }
+  
     @Override
     protected void onDestroy() {
         QuizBD.destroyInstance();
