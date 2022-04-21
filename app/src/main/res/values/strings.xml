@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Gamer\'s Guess</string>
-
     <string name="game_name">GAMER\'S\nGUESS</string>
 
     // string textview
@@ -8,16 +7,16 @@
 
     <string name="difficulty_textview">CHOISISSEZ VOTRE DIFFICULTÉ</string>
 
-    <string name="button_easy">Facile</string>
-    <string name="button_medium">Intermédiaire</string>
-    <string name="button_hard">Difficile</string>
+    <string name="difficulty_easy">Facile</string>
+    <string name="difficulty_medium">Intermédiaire</string>
+    <string name="difficulty_hard">Difficile</string>
 
     <string name="pause_menu">PAUSE</string>
 
     <string name="question">Question</string>
     <string name="reponse">Réponse </string>
 
-    <string name="enterName">Entrez votre nom</string>
+    <string name="enterName">Entrez vos initiales</string>
     <string name="finalScore">950</string>
     <string name="highScore">Meilleur:</string>
     <string name="newHighscore">Nouveau meilleur score !</string>
@@ -25,8 +24,11 @@
     <string name="scoreSubmitted">Le score a été ajouté au leaderboard !</string>
 
     <string name="leaderboard_title">Leaderboard</string>
-    <string name="leaderboardPlayer">Nom du joueur</string>
+    <string name="leaderboardRank">Rang</string>
     <string name="leaderboardScore">Score</string>
+    <string name="leaderboardName">Nom</string>
+    <string name="leaderboardDifficulty">Difficulté</string>
+    <string name="noScore">Aucun score enregistré. Jouez une partie !</string>
 
     <string name="backToGame">Retour au jeu</string>
     <string name="backToMenu">Retour au menu</string>

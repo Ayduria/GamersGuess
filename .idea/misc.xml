@@ -6,10 +6,11 @@
         <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/drawable/bg_rounded.xml" value="0.258" />
         <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/drawable/ic_launcher_background.xml" value="0.263" />
         <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/drawable/input_background.xml" value="0.263" />
+        <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/drawable/leaderboard_background.xml" value="0.251" />
         <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/layout/activity_difficultychoice.xml" value="0.24791666666666667" />
-        <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/layout/activity_leaderboard.xml" value="0.24791666666666667" />
+        <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/layout/activity_leaderboard.xml" value="0.25" />
         <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/layout/activity_mainmenu.xml" value="0.24791666666666667" />
+        <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/layout/activity_mainmenu.xml" value="0.33" />
         <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/layout/activity_pausemenu.xml" value="0.24791666666666667" />
         <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/layout/activity_quiz.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/Ayduria/Documents/ASProjects/GamersGuess/app/src/main/res/layout/activity_quizresult.xml" value="0.24791666666666667" />
