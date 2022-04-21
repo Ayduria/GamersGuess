@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,7 +29,6 @@ import java.util.List;
 import uqac.dim.gamersguess.persistance.Question;
 import uqac.dim.gamersguess.persistance.QuizBD;
 import uqac.dim.gamersguess.persistance.Reponse;
-import uqac.dim.gamersguess.persistance.Score;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -126,7 +127,8 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i("DIM", "Paused game");
 
-            startActivity(new Intent(QuizActivity.this, PauseMenuActivity.class));
+                DialogFragment pauseFragment = new PauseMenuDialog();
+                pauseFragment.show(getSupportFragmentManager(), "pause");
 
                 if(mTimerRunning)
                 {
@@ -228,6 +230,11 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
+        if(mTimerRunning)
+        {
+            pauseTimer();
+        }
+
         new AlertDialog.Builder(this)
                 .setMessage("Voulez-vous vraiment arrêter le quiz?")
                 .setCancelable(false)
@@ -252,7 +259,7 @@ public class QuizActivity extends AppCompatActivity {
             public void onFinish() {
                 mTimerRunning = false;
                 mCountDownTimer.cancel();
-                timesUpSound.start();
+                //timesUpSound.start();
 
                 questionIndex++;
 

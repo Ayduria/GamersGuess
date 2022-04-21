@@ -32,10 +32,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".PauseMenuActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".LeaderboardActivity"
             android:screenOrientation="portrait">
         </activity>
