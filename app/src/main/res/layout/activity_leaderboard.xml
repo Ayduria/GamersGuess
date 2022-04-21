@@ -1,81 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     android:gravity="center">
 
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/back_icon"/>
+
     <TextView
+        android:id="@+id/leaderboardText"
+        style="@style/Theme.GamersGuess.activityName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
         android:text="@string/leaderboard_title"
-        android:textAlignment="center"
-        style="@style/Theme.GamersGuess.activityHeader"/>
+        android:gravity="center"
+        android:textAlignment="center" />
 
-    <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:rowCount="5"
-        android:columnCount="2"
-        >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/leaderboardText"
+        android:padding="20dp"
+        android:fadeScrollbars="true"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="50dp"
+        android:background="@drawable/leaderboard_background">
 
-    <TextView
-        android:id="@+id/leaderboardPlayer1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardPlayer"
-        />
+        <TableLayout
+            android:id="@+id/leaderboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
 
-    <TextView
-        android:id="@+id/leaderboardScore1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardScore" />
+            <TableRow
+                android:id="@+id/leaderboardHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp">
 
-    <TextView
-        android:id="@+id/leaderboardPlayer2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardPlayer"/>
-    <TextView
-        android:id="@+id/leaderboardScore2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardScore"/>
+                <TextView
+                    android:id="@+id/rank_header"
+                    style="@style/Theme.GamersGuess.leaderboardHeader"
+                    android:text="@string/leaderboardRank" />
 
-    <TextView
-        android:id="@+id/leaderboardPlayer3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardPlayer"/>
-    <TextView
-        android:id="@+id/leaderboardScore3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardScore"/>
+                <TextView
+                    android:id="@+id/score_header"
+                    style="@style/Theme.GamersGuess.leaderboardHeader"
+                    android:text="@string/leaderboardScore" />
 
-    <TextView
-        android:id="@+id/leaderboardPlayer4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardPlayer"/>
-    <TextView
-        android:id="@+id/leaderboardScore4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardScore"/>
+                <TextView
+                    android:id="@+id/name_header"
+                    style="@style/Theme.GamersGuess.leaderboardHeader"
+                    android:text="@string/leaderboardName" />
 
-    <TextView
-        android:id="@+id/leaderboardPlayer5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardPlayer"/>
-    <TextView
-        android:id="@+id/leaderboardScore5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboardScore"/>
-    </GridLayout>
+                <TextView
+                    android:id="@+id/difficulty_header"
+                    style="@style/Theme.GamersGuess.leaderboardHeader"
+                    android:text="@string/leaderboardDifficulty" />
+            </TableRow>
 
 
-</LinearLayout>
+
+        </TableLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -7,7 +7,11 @@
 
     <style name="Theme.GamersGuess.gameName">
         <item name="android:textSize">50sp</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">#CDDC39</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">15</item>
+        <item name="android:shadowDy">15</item>
+        <item name="android:shadowRadius">1</item>
         <item name="android:fontFamily">@font/broken_console</item>
     </style>
 
@@ -24,5 +28,32 @@
     <style name="Theme.GamersGuess.activityHeader">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="Theme.GamersGuess.activityName">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">10</item>
+        <item name="android:shadowDy">10</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:fontFamily">@font/broken_console</item>
+    </style>
+
+    <style name="Theme.GamersGuess.leaderboardHeader">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/alterebro</item>
+    </style>
+
+    <style name="Theme.GamersGuess.leaderboardItem">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/alterebro</item>
     </style>
 </resources>

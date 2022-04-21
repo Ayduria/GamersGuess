@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -60,9 +61,6 @@ public class QuizResultActivity extends AppCompatActivity {
             bestScore = highScore.score;
             if (finalScore > bestScore)
                 newHighScore();
-            else {
-                hideNameInput();
-            }
         }
 
         String highScoreDisplay = getResources().getString(R.string.highScore) + " " + String.valueOf(bestScore);
@@ -82,8 +80,26 @@ public class QuizResultActivity extends AppCompatActivity {
             }
         });
 
-        Button menuButton = (Button)findViewById(R.id.menu_btn);
-        menuButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton leaderboardButton = (ImageButton)findViewById(R.id.leaderboard_button2);
+        leaderboardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("DIM", "Display leaderboard");
+                startActivity(new Intent(QuizResultActivity.this, LeaderboardActivity.class));
+            }
+        });
+
+        ImageButton replayButton = (ImageButton)findViewById(R.id.replay_button);
+        replayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("DIM", "Restart quiz");
+                restartQuiz();
+            }
+        });
+
+        ImageButton homeButton = (ImageButton)findViewById(R.id.home_button);
+        homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "Back to menu");
@@ -108,6 +124,13 @@ public class QuizResultActivity extends AppCompatActivity {
         playerName = nameInput.getText().toString();
         Score score = new Score(finalScore, playerName, difficulty);
         bd.quizDao().addScore(score);
+    }
+
+    private void restartQuiz() {
+        Intent intent = new Intent(QuizResultActivity.this, QuizActivity.class);
+        intent.putExtra("difficulty", difficulty);
+        startActivity(intent);
+        finish();
     }
 
     @Override
