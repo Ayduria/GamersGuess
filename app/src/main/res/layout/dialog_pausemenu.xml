@@ -25,6 +25,39 @@
         android:gravity="center"
         android:text="@string/pause_menu" />
 
+    <TextView
+        android:id="@+id/volume"
+        style="@style/Theme.GamersGuess.activityHeader"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Volume ? " />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/soundON_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/soundon_icon"/>
+
+        <ImageButton
+            android:id="@+id/soundOff_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/soundoff_icon"/>
+
+    </LinearLayout>
+
     <ImageButton
         android:id="@+id/home_button2"
         android:layout_width="75dp"

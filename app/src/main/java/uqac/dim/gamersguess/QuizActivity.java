@@ -21,6 +21,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.OnLifecycleEvent;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,7 +54,7 @@ public class QuizActivity extends AppCompatActivity {
 
     // For the timer
     private TextView qTimer;
-    private static final long START_TIME_IN_MILLIS = 10000;
+    private static final long START_TIME_IN_MILLIS = 11000;
 
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
@@ -71,7 +73,7 @@ public class QuizActivity extends AppCompatActivity {
         // Get sounds
         goodAnswerSound = MediaPlayer.create(this,R.raw.good_answer);
         wrongAnswerSound = MediaPlayer.create(this,R.raw.wrong_answer);
-        //timesUpSound = MediaPlayer.create(this, R.raw.times_up_sound);
+        timesUpSound = MediaPlayer.create(this, R.raw.times_up_sound);
 
         // Get question field and answer buttons
         questionDisplay = (TextView)findViewById(R.id.question);
@@ -132,11 +134,12 @@ public class QuizActivity extends AppCompatActivity {
 
                 if(mTimerRunning)
                 {
-                    pauseTimer();
+                   pauseTimer();
                 }
 
             }
         });
+
     }
 
     private void displayQuestion() {
@@ -162,6 +165,7 @@ public class QuizActivity extends AppCompatActivity {
 
         //Timer
         startTimer();
+        qTimer.setText("Temps Restant : " + mTimeLeftInMillis / 1000 );
 
     }
 
@@ -201,11 +205,12 @@ public class QuizActivity extends AppCompatActivity {
                 else{
                     displayResult();}
 
+
             }
 
         }, 800);
 
-    resetTimer();
+        resetTimer();
     }
 
     private Button getGoodAnswerButton() {
@@ -259,7 +264,7 @@ public class QuizActivity extends AppCompatActivity {
             public void onFinish() {
                 mTimerRunning = false;
                 mCountDownTimer.cancel();
-                //timesUpSound.start();
+                timesUpSound.start();
 
                 questionIndex++;
 
@@ -292,11 +297,11 @@ public class QuizActivity extends AppCompatActivity {
     private void pauseTimer(){
         mCountDownTimer.cancel();
         mTimerRunning = false;
+        Log.i("DIM", "Changed Timer to false");
     }
 
     private void resetTimer(){
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
-        updateCountDownText();
     }
   
     @Override
@@ -304,4 +309,6 @@ public class QuizActivity extends AppCompatActivity {
         QuizBD.destroyInstance();
         super.onDestroy();
     }
+
 }
+

@@ -1,6 +1,7 @@
 package uqac.dim.gamersguess;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,14 +37,18 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+        //Options button
         ImageButton optionsButton = (ImageButton)findViewById(R.id.options_button);
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("DIM", "View options");
+                Log.i("DIM", "Settings menu");
 
-                startActivity(new Intent(MainMenuActivity.this, SettingsActivity.class));
+                DialogFragment optionsFragment = new SettingsActivity();
+                optionsFragment.show(getSupportFragmentManager(), "options");
+
             }
         });
+
     }
 }
