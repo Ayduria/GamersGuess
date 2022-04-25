@@ -83,24 +83,5 @@ public class SettingsDialog extends DialogFragment {
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,0,0);
             }
         });
-
-        /*ToggleButton toggle = (ToggleButton) getDialog().findViewById(R.id.toggleMusic);
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    //tests
-                    //goodAnswerSound.start();
-                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,0,0);
-                } else {
-                    //tests
-                    //goodAnswerSound.start();
-                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,10,0);
-                }
-
-            }
-        });*/
-
     }
 }

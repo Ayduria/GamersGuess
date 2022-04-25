@@ -35,29 +35,29 @@ import uqac.dim.gamersguess.persistance.Reponse;
 
 public class QuizActivity extends AppCompatActivity {
 
+    // Questions and answers
     private QuizBD bd;
     String difficulty;
-
     List<Question> questions;
     Question question;
     TextView questionDisplay;
     List<Button> reponsesBtn;
-
     int questionIndex = 0;
 
+    // Score calculations
     int ptsTotal = 0;
     int comboPtsMultiplier = 1;
     int difficultyPtsMultiplier;
     int timeMultiplier;
 
+    // Sounds
     MediaPlayer goodAnswerSound;
     MediaPlayer wrongAnswerSound;
     MediaPlayer timesUpSound;
 
-    // For the timer
+    // Timer
     private TextView qTimer;
     private static final long timeLengthMilli = 11000;
-
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = timeLengthMilli;
@@ -79,11 +79,11 @@ public class QuizActivity extends AppCompatActivity {
 
         // Get question field and answer buttons
         questionDisplay = (TextView)findViewById(R.id.question);
-        Button reponse1 = (Button)findViewById(R.id.reponse1);
-        Button reponse2 = (Button)findViewById(R.id.reponse2);
-        Button reponse3 = (Button)findViewById(R.id.reponse3);
-        Button reponse4 = (Button)findViewById(R.id.reponse4);
-        reponsesBtn = Arrays.asList(reponse1, reponse2, reponse3, reponse4);
+        reponsesBtn = Arrays.asList(
+                (Button)findViewById(R.id.reponse1),
+                (Button)findViewById(R.id.reponse2),
+                (Button)findViewById(R.id.reponse3),
+                (Button)findViewById(R.id.reponse4));
 
         // Get all questions for selected difficulty
         bd = QuizBD.getDatabase(getApplicationContext());
@@ -166,8 +166,7 @@ public class QuizActivity extends AppCompatActivity {
 
         //Timer
         startTimer(timeLengthMilli);
-        qTimer.setText("Temps Restant : " + mTimeLeftInMillis / 1000 );
-
+        updateCountDownText();
     }
 
     private void manageAnswer(Button clickedButton) {
@@ -197,7 +196,10 @@ public class QuizActivity extends AppCompatActivity {
 
         questionIndex++;
         pauseTimer();
+        delayedChange();
+    }
 
+    private void delayedChange() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -208,11 +210,10 @@ public class QuizActivity extends AppCompatActivity {
             }
 
         }, 800);
-
         resetTimer();
     }
 
-    private Button getGoodAnswerButton() {
+    private void showGoodAnswer() {
         Button goodButton = null;
 
         for(Button button : reponsesBtn) {
@@ -221,7 +222,57 @@ public class QuizActivity extends AppCompatActivity {
                 goodButton = button;
         }
 
-        return goodButton;
+        goodButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.MULTIPLY));
+        goodButton.setTextColor(Color.parseColor("#ffffff"));
+    }
+
+    private void startTimer(long timeLengthMilli){
+        mCountDownTimer = new CountDownTimer(timeLengthMilli,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+               mTimeLeftInMillis = millisUntilFinished;
+               updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+                mCountDownTimer.cancel();
+                timesUpSound.start();
+
+                questionIndex++;
+
+                for(Button button : reponsesBtn)
+                    button.setClickable(false);
+
+                showGoodAnswer();
+                delayedChange();
+            }
+        }.start();
+
+        mTimerRunning = true;
+    }
+
+    private void updateCountDownText(){
+        String remainingTime = getResources().getString(R.string.time_remaining) + " " + mTimeLeftInMillis / 1000;
+        qTimer.setText(remainingTime);
+    }
+
+    public void pauseTimer(){
+        Log.i("DIM", "Paused timer");
+        mCountDownTimer.cancel();
+        mTimerRunning = false;
+    }
+
+    public void resumeTimer(){
+        Log.i("DIM", "Resumed timer");
+        startTimer(mTimeLeftInMillis);
+        mTimerRunning = true;
+    }
+
+    private void resetTimer(){
+        Log.i("DIM", "Reset timer");
+        mTimeLeftInMillis = timeLengthMilli;
     }
 
     private void displayResult() {
@@ -251,75 +302,6 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 })
                 .show();
-    }
-
-    private void startTimer(long timeLengthMilli){
-        mCountDownTimer = new CountDownTimer(timeLengthMilli,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-               mTimeLeftInMillis = millisUntilFinished;
-               updateCountDownText();
-            }
-
-            @Override
-            public void onFinish() {
-                mTimerRunning = false;
-                mCountDownTimer.cancel();
-                timesUpSound.start();
-
-                questionIndex++;
-
-                for(Button button : reponsesBtn)
-                    button.setClickable(false);
-
-                showGoodAnswer();
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (questionIndex < questions.size())
-                            displayQuestion();
-                        else{
-                            displayResult();}
-                    }
-
-                }, 800);
-
-                resetTimer();
-            }
-
-        }.start();
-
-        mTimerRunning = true;
-    }
-
-    private void showGoodAnswer() {
-        Button rightButton = getGoodAnswerButton();
-        rightButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.MULTIPLY));
-        rightButton.setTextColor(Color.parseColor("#ffffff"));
-    }
-
-    private void updateCountDownText(){
-
-        qTimer.setText("Temps restant : " + mTimeLeftInMillis / 1000 );
-
-    }
-
-    public void pauseTimer(){
-        Log.i("DIM", "Paused timer");
-        mCountDownTimer.cancel();
-        mTimerRunning = false;
-    }
-
-    public void resumeTimer(){
-        Log.i("DIM", "Resumed timer");
-        startTimer(mTimeLeftInMillis);
-        mTimerRunning = true;
-    }
-
-    private void resetTimer(){
-        Log.i("DIM", "Reset timer");
-        mTimeLeftInMillis = timeLengthMilli;
     }
 
     @Override

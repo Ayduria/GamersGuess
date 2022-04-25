@@ -11,6 +11,8 @@
     <string name="difficulty_medium">Intermédiaire</string>
     <string name="difficulty_hard">Difficile</string>
 
+    <string name="time_remaining">Temps restant :</string>
+
     <string name="pause_menu">PAUSE</string>
 
     <string name="question">Question</string>

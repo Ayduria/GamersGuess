@@ -62,13 +62,12 @@ public class QuizResultActivity extends AppCompatActivity {
 
         score.setText(String.valueOf(finalScore));
 
-
         // Check for highscore
         Score highScore = bd.quizDao().getHighScore();
 
-        if (highScore == null) {
+        if (highScore == null)
             newHighScore();
-        } else {
+        else {
             bestScore = highScore.score;
             if (finalScore > bestScore)
                 newHighScore();
@@ -77,6 +76,7 @@ public class QuizResultActivity extends AppCompatActivity {
         String highScoreDisplay = getResources().getString(R.string.highScore) + " " + String.valueOf(bestScore);
         bestScoreDisplay.setText(highScoreDisplay);
 
+        // Submit highscore to leaderboard
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,12 +86,14 @@ public class QuizResultActivity extends AppCompatActivity {
                 } else {
                     Log.i("DIM", "New highscore submitted");
                     addNewScore();
-                    hideNameInput();
+                    nameInput.setVisibility(View.GONE);
+                    submitButton.setVisibility(View.GONE);
                     findViewById(R.id.score_submitted).setVisibility(View.VISIBLE);
                 }
             }
         });
 
+        // Button listeners
         ImageButton leaderboardButton = (ImageButton) findViewById(R.id.leaderboard_button2);
         leaderboardButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,11 +120,6 @@ public class QuizResultActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    private void hideNameInput() {
-        nameInput.setVisibility(View.GONE);
-        submitButton.setVisibility(View.GONE);
     }
 
     private void newHighScore() {

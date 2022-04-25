@@ -12,14 +12,12 @@ import android.widget.ImageButton;
 
 public class MainMenuActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
 
         Button playButton = (Button)findViewById(R.id.play_button);
-
         playButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -34,24 +32,18 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "View leaderboard");
-
                 startActivity(new Intent(MainMenuActivity.this, LeaderboardActivity.class));
             }
         });
 
-        //Options button
         ImageButton optionsButton = (ImageButton)findViewById(R.id.options_button);
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "Settings menu");
-
                 DialogFragment optionsFragment = new SettingsDialog();
                 optionsFragment.show(getSupportFragmentManager(), "options");
-
             }
         });
-
     }
-
 }

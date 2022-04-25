@@ -28,7 +28,6 @@ public class LeaderboardActivity extends AppCompatActivity {
     TableLayout leaderboard;
     String difficulty;
     int rank = 1;
-    int lastScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,17 +100,17 @@ public class LeaderboardActivity extends AppCompatActivity {
             // Top rank colors
             switch (rank) {
                 case 1:     for (TextView textView : columns)
-                    textView.setTextColor(ContextCompat.getColor(this, R.color.gold));
-                    break;
+                            textView.setTextColor(ContextCompat.getColor(this, R.color.gold));
+                            break;
                 case 2:     for (TextView textView : columns)
-                    textView.setTextColor(ContextCompat.getColor(this, R.color.silver));
-                    break;
+                            textView.setTextColor(ContextCompat.getColor(this, R.color.silver));
+                            break;
                 case 3:     for (TextView textView : columns)
-                    textView.setTextColor(ContextCompat.getColor(this, R.color.bronze));
-                    break;
+                            textView.setTextColor(ContextCompat.getColor(this, R.color.bronze));
+                            break;
                 default:    for (TextView textView : columns)
-                    textView.setTextColor(Color.WHITE);
-                    break;
+                            textView.setTextColor(Color.WHITE);
+                            break;
             }
 
             leaderboard.addView(tr, new TableLayout.LayoutParams(0, TableLayout.LayoutParams.WRAP_CONTENT));
