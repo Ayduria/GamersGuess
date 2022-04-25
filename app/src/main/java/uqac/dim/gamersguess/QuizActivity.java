@@ -56,6 +56,7 @@ public class QuizActivity extends AppCompatActivity {
     MediaPlayer timesUpSound;
     MediaPlayer pauseSound;
     MediaPlayer unpauseSound;
+    MediaPlayer tickSound;
 
     // Timer
     private TextView qTimer;
@@ -80,6 +81,7 @@ public class QuizActivity extends AppCompatActivity {
         timesUpSound = MediaPlayer.create(this, R.raw.times_up_sound);
         pauseSound = MediaPlayer.create(this, R.raw.pause_sound);
         unpauseSound = MediaPlayer.create(this, R.raw.unpause_sound);
+        tickSound = MediaPlayer.create(this, R.raw.tick_sound);
 
         // Get question field and answer buttons
         questionDisplay = (TextView)findViewById(R.id.question);
@@ -97,12 +99,15 @@ public class QuizActivity extends AppCompatActivity {
         switch(difficulty) {
             case "f":   questions = bd.quizDao().getEasyQuestions();
                         difficultyPtsMultiplier = 1;
+                        getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.easy));
                 break;
             case "m":   questions = bd.quizDao().getMediumQuestions();
                         difficultyPtsMultiplier = 2;
+                        getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.medium));
                 break;
             case "d":   questions = bd.quizDao().getHardQuestions();
                         difficultyPtsMultiplier = 3;
+                        getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.hard));
                 break;
         }
 
@@ -250,6 +255,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void updateCountDownText(){
+        if ((mTimeLeftInMillis / 1000) <= 3)
+            tickSound.start();
         String remainingTime = getResources().getString(R.string.time_remaining) + " " + mTimeLeftInMillis / 1000;
         qTimer.setText(remainingTime);
     }

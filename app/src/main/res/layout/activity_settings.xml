@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:text="Options" />
+        android:text="@string/options" />
 
     <TextView
         android:id="@+id/volume"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
-        android:text="Volume ? " />
+        android:text="@string/volume" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,16 +42,16 @@
 
         <ImageButton
             android:id="@+id/soundON_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:background="@drawable/soundon_icon"/>
 
         <ImageButton
             android:id="@+id/soundOff_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:background="@drawable/soundoff_icon"/>

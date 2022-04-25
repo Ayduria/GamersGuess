@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background">#009688</color>
-    <color name="defaultBtn">#F0F0F0</color>
+    <color name="defaultBtn">#FFFFFF</color>
     <color name="goodAnswerBtn">#4CAF50</color>
     <color name="badAnswerBtn">#F44336</color>
     <color name="gold">#FFD700</color>
     <color name="silver">#aaa9ad</color>
     <color name="bronze">#CD7F32</color>
+    <color name="easy">#009688</color>
+    <color name="medium">#A86707</color>
+    <color name="hard">#932A4E</color>
 </resources>

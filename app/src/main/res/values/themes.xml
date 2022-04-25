@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.GamersGuess" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">#009688</item>
+        <item name="android:windowBackground">#3F51B5</item>
         <item name="android:fontFamily">@font/league_spartan</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityTransition</item>
     </style>
