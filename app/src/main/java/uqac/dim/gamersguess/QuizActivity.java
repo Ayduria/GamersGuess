@@ -47,6 +47,7 @@ public class QuizActivity extends AppCompatActivity {
     int ptsTotal = 0;
     int comboPtsMultiplier = 1;
     int difficultyPtsMultiplier;
+    int timeMultiplier = 1;
 
     MediaPlayer goodAnswerSound;
     MediaPlayer wrongAnswerSound;
@@ -180,7 +181,8 @@ public class QuizActivity extends AppCompatActivity {
             Log.i("DIM", "Good answer");
             goodAnswerSound.start();
             clickedButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.MULTIPLY));
-            ptsTotal += 5 * difficultyPtsMultiplier * comboPtsMultiplier;
+            timeMultiplier = (int)(mTimeLeftInMillis/1000);
+            ptsTotal += 5 * difficultyPtsMultiplier * comboPtsMultiplier * timeMultiplier;
             comboPtsMultiplier++;
 
         } else {

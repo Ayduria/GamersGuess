@@ -18,8 +18,14 @@ import androidx.lifecycle.LiveData;
 
 import org.w3c.dom.Text;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import nl.dionsegijn.konfetti.KonfettiView;
+//import nl.dionsegijn.konfetti.core.models.Shape;
+import nl.dionsegijn.konfetti.models.Shape;
+//import nl.dionsegijn.konfetti.xml.KonfettiView;
 import uqac.dim.gamersguess.persistance.Question;
 import uqac.dim.gamersguess.persistance.QuizBD;
 import uqac.dim.gamersguess.persistance.Score;
@@ -27,6 +33,7 @@ import uqac.dim.gamersguess.persistance.Score;
 public class QuizResultActivity extends AppCompatActivity {
 
     private QuizBD bd;
+    private KonfettiView celebrationView;
 
     int finalScore;
     int bestScore;
@@ -40,24 +47,28 @@ public class QuizResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizresult);
 
+        //Confettis
+        celebrationView = findViewById(R.id.celebrationView);
+
         bd = QuizBD.getDatabase(getApplicationContext());
         Bundle b = getIntent().getExtras();
         finalScore = b.getInt("score");
         difficulty = b.getString("difficulte");
 
-        TextView score = (TextView)findViewById(R.id.final_score);
-        TextView bestScoreDisplay = (TextView)findViewById(R.id.highscore);
-        nameInput = (EditText)findViewById(R.id.input_name);
-        submitButton = (Button)findViewById(R.id.submit_score);
+        TextView score = (TextView) findViewById(R.id.final_score);
+        TextView bestScoreDisplay = (TextView) findViewById(R.id.highscore);
+        nameInput = (EditText) findViewById(R.id.input_name);
+        submitButton = (Button) findViewById(R.id.submit_score);
 
         score.setText(String.valueOf(finalScore));
+
 
         // Check for highscore
         Score highScore = bd.quizDao().getHighScore();
 
-        if (highScore == null)
+        if (highScore == null) {
             newHighScore();
-        else {
+        } else {
             bestScore = highScore.score;
             if (finalScore > bestScore)
                 newHighScore();
@@ -69,8 +80,9 @@ public class QuizResultActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(nameInput.getText())) {
+                if (TextUtils.isEmpty(nameInput.getText())) {
                     nameInput.setError("Votre nom est requis !");
+
                 } else {
                     Log.i("DIM", "New highscore submitted");
                     addNewScore();
@@ -80,7 +92,7 @@ public class QuizResultActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton leaderboardButton = (ImageButton)findViewById(R.id.leaderboard_button2);
+        ImageButton leaderboardButton = (ImageButton) findViewById(R.id.leaderboard_button2);
         leaderboardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +101,7 @@ public class QuizResultActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton replayButton = (ImageButton)findViewById(R.id.replay_button);
+        ImageButton replayButton = (ImageButton) findViewById(R.id.replay_button);
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +110,7 @@ public class QuizResultActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton homeButton = (ImageButton)findViewById(R.id.home_button);
+        ImageButton homeButton = (ImageButton) findViewById(R.id.home_button);
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,10 +126,21 @@ public class QuizResultActivity extends AppCompatActivity {
     }
 
     private void newHighScore() {
-        TextView announcement = (TextView)findViewById(R.id.score_txt);
+        TextView announcement = (TextView) findViewById(R.id.score_txt);
         bestScore = finalScore;
         announcement.setTextColor(Color.RED);
         announcement.setText(getResources().getString(R.string.newHighscore));
+
+        // Funfettis for highscore
+        celebrationView.build()
+                .addColors(Color.BLUE, Color.GREEN)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.RECT, Shape.CIRCLE)
+                .setPosition(-50, celebrationView.getWidth() + 50f, -50f, -50f)
+                .streamFor(200, 1000L);
     }
 
     private void addNewScore() {
@@ -138,4 +161,6 @@ public class QuizResultActivity extends AppCompatActivity {
         QuizBD.destroyInstance();
         super.onDestroy();
     }
+
+
 }
