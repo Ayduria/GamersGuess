@@ -1,0 +1,83 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.GamersGuess" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">#3F51B5</item>
+        <item name="android:fontFamily">@font/league_spartan</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityTransition</item>
+        <!-- Active thumb color & Active track color(30% transparency) -->
+        <item name="colorControlActivated">#ffffff</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#FFFFFF</item>
+        <!-- Inactive track color(30% transparency) -->
+        <item name="android:colorForeground">#2F0537</item>
+    </style>
+
+    <style name="CustomActivityTransition" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <style name="Theme.GamersGuess.gameName">
+        <item name="android:textSize">50sp</item>
+        <item name="android:textColor">#CDDC39</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">15</item>
+        <item name="android:shadowDy">15</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:fontFamily">@font/broken_console</item>
+    </style>
+
+    <style name="Theme.GamersGuess.dialogHeader">
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">10</item>
+        <item name="android:shadowDy">10</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:fontFamily">@font/broken_console</item>
+    </style>
+
+    <style name="Theme.GamersGuess.score">
+        <item name="android:textSize">60sp</item>
+        <item name="android:textColor">#FFEB3B</item>
+        <item name="android:shadowColor">#FFFFFF</item>
+        <item name="android:shadowDx">10</item>
+        <item name="android:shadowDy">10</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:fontFamily">@font/broken_console</item>
+    </style>
+
+    <style name="Theme.GamersGuess.activityHeader">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="Theme.GamersGuess.activityName">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">10</item>
+        <item name="android:shadowDy">10</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:fontFamily">@font/broken_console</item>
+    </style>
+
+    <style name="Theme.GamersGuess.leaderboardHeader">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/alterebro</item>
+    </style>
+
+    <style name="Theme.GamersGuess.leaderboardItem">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/alterebro</item>
+    </style>
+</resources>

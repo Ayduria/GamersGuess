@@ -25,7 +25,9 @@
         android:paddingBottom="30dp"
         android:background="@drawable/bg_rounded"
         android:layout_marginBottom="15dp"
-        android:text="@string/button_easy" />
+        android:backgroundTint="@color/easy"
+        android:textColor="#ffffff"
+        android:text="@string/difficulty_easy" />
 
     <Button
         android:id="@+id/Button_medium"
@@ -35,7 +37,9 @@
         android:paddingBottom="30dp"
         android:background="@drawable/bg_rounded"
         android:layout_marginBottom="15dp"
-        android:text="@string/button_medium" />
+        android:backgroundTint="@color/medium"
+        android:textColor="#ffffff"
+        android:text="@string/difficulty_medium" />
 
     <Button
         android:id="@+id/Button_hard"
@@ -44,6 +48,8 @@
         android:paddingTop="30dp"
         android:paddingBottom="30dp"
         android:background="@drawable/bg_rounded"
-        android:text="@string/button_hard" />
+        android:backgroundTint="@color/hard"
+        android:textColor="#ffffff"
+        android:text="@string/difficulty_hard" />
 
 </LinearLayout>
