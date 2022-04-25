@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -34,6 +35,7 @@ import uqac.dim.gamersguess.persistance.Score;
 
 public class QuizResultActivity extends AppCompatActivity {
 
+    private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
     private QuizBD bd;
     private KonfettiView celebrationView;
 
@@ -92,6 +94,7 @@ public class QuizResultActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                submitButton.startAnimation(buttonClick);
                 if (TextUtils.isEmpty(nameInput.getText())) {
                     errorSound.start();
                     nameInput.setError("Votre nom est requis !");
@@ -112,6 +115,7 @@ public class QuizResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "Display leaderboard");
+                leaderboardButton.startAnimation(buttonClick);
                 startActivity(new Intent(QuizResultActivity.this, LeaderboardActivity.class));
             }
         });
@@ -121,6 +125,7 @@ public class QuizResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "Restart quiz");
+                replayButton.startAnimation(buttonClick);
                 restartQuiz();
             }
         });
@@ -130,6 +135,7 @@ public class QuizResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "Back to menu");
+                homeButton.startAnimation(buttonClick);
                 finish();
             }
         });

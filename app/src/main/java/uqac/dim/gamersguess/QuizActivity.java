@@ -14,6 +14,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ import uqac.dim.gamersguess.persistance.QuizBD;
 import uqac.dim.gamersguess.persistance.Reponse;
 
 public class QuizActivity extends AppCompatActivity {
+
+    DialogFragment pauseDialog;
 
     // Questions and answers
     private QuizBD bd;
@@ -71,6 +74,8 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        pauseDialog = new PauseMenuDialog();
 
         // Get timer
         qTimer = (TextView) findViewById(R.id.timer);
@@ -181,7 +186,7 @@ public class QuizActivity extends AppCompatActivity {
         if (validAnswer == 1) {
             Log.i("DIM", "Good answer");
             goodAnswerSound.start();
-            clickedButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.MULTIPLY));
+            clickedButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.DARKEN));
             timeMultiplier = (int)(mTimeLeftInMillis/1000);
             if (timeMultiplier == 0)
                 timeMultiplier = 1;
@@ -191,7 +196,7 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             Log.i("DIM", "Bad answer");
             wrongAnswerSound.start();
-            clickedButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.badAnswerBtn), PorterDuff.Mode.MULTIPLY));
+            clickedButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.badAnswerBtn), PorterDuff.Mode.DARKEN));
             showGoodAnswer();
             comboPtsMultiplier = 1;
         }
@@ -234,22 +239,25 @@ public class QuizActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                mTimeLeftInMillis = millisUntilFinished;
                updateCountDownText();
+
+               if (mTimeLeftInMillis/1000 < 1) {
+                   onFinish();
+               }
             }
 
             @Override
             public void onFinish() {
-                mTimerRunning = false;
-                mCountDownTimer.cancel();
                 timesUpSound.start();
-
-                questionIndex++;
-
                 qTimer.setTextColor(Color.RED);
 
                 for(Button button : reponsesBtn)
                     button.setClickable(false);
 
                 showGoodAnswer();
+
+                questionIndex++;
+                mTimerRunning = false;
+                mCountDownTimer.cancel();
                 delayedChange();
             }
         }.start();
@@ -318,8 +326,7 @@ public class QuizActivity extends AppCompatActivity {
         pauseVisible = true;
         pauseSound.start();
 
-        DialogFragment pauseFragment = new PauseMenuDialog();
-        pauseFragment.show(getSupportFragmentManager(), "pause");
+        pauseDialog.show(getSupportFragmentManager(), "pause");
 
         if(mTimerRunning)
             pauseTimer();

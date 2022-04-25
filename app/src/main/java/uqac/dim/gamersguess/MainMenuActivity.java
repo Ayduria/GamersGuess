@@ -9,11 +9,15 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainMenuActivity extends AppCompatActivity {
 
+    private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+
+    DialogFragment settingsDialog;
     MediaPlayer popupSound;
     MediaPlayer closeSound;
 
@@ -22,6 +26,8 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        settingsDialog = new SettingsDialog();
 
         popupSound = MediaPlayer.create(this, R.raw.pause_sound);
         closeSound = MediaPlayer.create(this, R.raw.unpause_sound);
@@ -32,6 +38,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "Play game");
+                playButton.startAnimation(buttonClick);
                 startActivity(new Intent(MainMenuActivity.this, DifficultyChoiceActivity.class));
             }
         });
@@ -41,6 +48,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "View leaderboard");
+                leaderboardButton.startAnimation(buttonClick);
                 startActivity(new Intent(MainMenuActivity.this, LeaderboardActivity.class));
             }
         });
@@ -50,9 +58,9 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "Settings menu");
+                optionsButton.startAnimation(buttonClick);
                 popupSound.start();
-                DialogFragment optionsFragment = new SettingsDialog();
-                optionsFragment.show(getSupportFragmentManager(), "options");
+                settingsDialog.show(getSupportFragmentManager(), "options");
             }
         });
     }

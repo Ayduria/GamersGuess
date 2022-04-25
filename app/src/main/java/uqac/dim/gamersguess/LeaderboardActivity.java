@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
@@ -23,6 +24,8 @@ import uqac.dim.gamersguess.persistance.QuizBD;
 import uqac.dim.gamersguess.persistance.Score;
 
 public class LeaderboardActivity extends AppCompatActivity {
+
+    private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
     private QuizBD bd;
     List<Score> scores;
@@ -51,6 +54,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                backButton.startAnimation(buttonClick);
                 finish();
             }
         });

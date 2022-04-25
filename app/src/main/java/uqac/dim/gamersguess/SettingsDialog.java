@@ -3,7 +3,11 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.view.KeyEvent;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,10 +28,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class SettingsDialog extends DialogFragment {
-
-    AudioManager audioManager;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -46,6 +49,10 @@ public class SettingsDialog extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
 
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        ft.add(R.id.volume_fragment, new SoundToggleFragment());
+        ft.commit();
+
         ImageButton closeButton = (ImageButton) getDialog().findViewById(R.id.close_button);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,34 +60,6 @@ public class SettingsDialog extends DialogFragment {
                 Log.i("DIM", "Settings menu");
                 ((MainMenuActivity)getActivity()).closeSettings();
                 dismiss();
-            }
-        });
-
-        // Sets physical volume to app volume
-        getDialog().setVolumeControlStream(AudioManager.STREAM_MUSIC);
-
-        //tests
-        audioManager = (AudioManager) getDialog().getContext().getSystemService(Context.AUDIO_SERVICE);
-
-        // Sound ON
-        ImageButton soundOnButton = (ImageButton) getDialog().findViewById(R.id.soundON_button);
-        soundOnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("DIM", "Sound on value 50");
-
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,10,0);
-            }
-        });
-
-        // Sound OFF
-        ImageButton soundOffButton = (ImageButton) getDialog().findViewById(R.id.soundOff_button);
-        soundOffButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("DIM", "Sound off value 0");
-
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,0,0);
             }
         });
     }

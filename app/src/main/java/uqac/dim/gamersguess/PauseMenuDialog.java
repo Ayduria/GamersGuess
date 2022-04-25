@@ -11,12 +11,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class PauseMenuDialog extends DialogFragment {
 
@@ -39,6 +41,10 @@ public class PauseMenuDialog extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCancelable(false);
 
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        ft.add(R.id.volume_fragment2, new SoundToggleFragment());
+        ft.commit();
+
         ImageButton closeButton = (ImageButton) getDialog().findViewById(R.id.close_button);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,35 +63,5 @@ public class PauseMenuDialog extends DialogFragment {
                 getActivity().finish();
             }
         });
-
-
-        // Sets physical volume to app volume
-        getDialog().setVolumeControlStream(AudioManager.STREAM_MUSIC);
-
-        //tests
-        audioManager = (AudioManager) getDialog().getContext().getSystemService(Context.AUDIO_SERVICE);
-
-        // Sound ON
-        ImageButton soundOnButton = (ImageButton) getDialog().findViewById(R.id.soundON_button);
-        soundOnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("DIM", "Sound on value 50");
-
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,10,0);
-            }
-        });
-
-        // Sound OFF
-        ImageButton soundOffButton = (ImageButton) getDialog().findViewById(R.id.soundOff_button);
-        soundOffButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("DIM", "Sound off value 0");
-
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,0,0);
-            }
-        });
-
     }
 }
