@@ -36,14 +36,15 @@ public class PauseMenuDialog extends DialogFragment {
         super.onStart();
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getDialog().setCanceledOnTouchOutside(false);
+        getDialog().setCancelable(false);
 
         ImageButton closeButton = (ImageButton) getDialog().findViewById(R.id.close_button);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "Closed pause menu");
-
+                ((QuizActivity)getActivity()).pauseVisible = false;
+                ((QuizActivity)getActivity()).resumeTimer();
                 dismiss();
             }
         });

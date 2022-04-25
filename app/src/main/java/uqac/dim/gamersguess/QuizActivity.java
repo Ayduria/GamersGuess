@@ -1,5 +1,6 @@
 package uqac.dim.gamersguess;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -47,7 +48,7 @@ public class QuizActivity extends AppCompatActivity {
     int ptsTotal = 0;
     int comboPtsMultiplier = 1;
     int difficultyPtsMultiplier;
-    int timeMultiplier = 1;
+    int timeMultiplier;
 
     MediaPlayer goodAnswerSound;
     MediaPlayer wrongAnswerSound;
@@ -55,12 +56,12 @@ public class QuizActivity extends AppCompatActivity {
 
     // For the timer
     private TextView qTimer;
-    private static final long START_TIME_IN_MILLIS = 11000;
+    private static final long timeLengthMilli = 11000;
 
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
-
+    private long mTimeLeftInMillis = timeLengthMilli;
+    public boolean pauseVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,14 +131,13 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i("DIM", "Paused game");
 
+                pauseVisible = true;
+
                 DialogFragment pauseFragment = new PauseMenuDialog();
                 pauseFragment.show(getSupportFragmentManager(), "pause");
 
                 if(mTimerRunning)
-                {
                    pauseTimer();
-                }
-
             }
         });
 
@@ -165,7 +165,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         //Timer
-        startTimer();
+        startTimer(timeLengthMilli);
         qTimer.setText("Temps Restant : " + mTimeLeftInMillis / 1000 );
 
     }
@@ -182,16 +182,16 @@ public class QuizActivity extends AppCompatActivity {
             goodAnswerSound.start();
             clickedButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.MULTIPLY));
             timeMultiplier = (int)(mTimeLeftInMillis/1000);
+            if (timeMultiplier == 0)
+                timeMultiplier = 1;
             ptsTotal += 5 * difficultyPtsMultiplier * comboPtsMultiplier * timeMultiplier;
             comboPtsMultiplier++;
 
         } else {
             Log.i("DIM", "Bad answer");
             wrongAnswerSound.start();
-            Button rightButton = getGoodAnswerButton();
             clickedButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.badAnswerBtn), PorterDuff.Mode.MULTIPLY));
-            rightButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.MULTIPLY));
-            rightButton.setTextColor(Color.parseColor("#ffffff"));
+            showGoodAnswer();
             comboPtsMultiplier = 1;
         }
 
@@ -203,11 +203,8 @@ public class QuizActivity extends AppCompatActivity {
             public void run() {
                 if (questionIndex < questions.size())
                     displayQuestion();
-
-                else{
-                    displayResult();}
-
-
+                else
+                    displayResult();
             }
 
         }, 800);
@@ -238,9 +235,7 @@ public class QuizActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         if(mTimerRunning)
-        {
             pauseTimer();
-        }
 
         new AlertDialog.Builder(this)
                 .setMessage("Voulez-vous vraiment arrêter le quiz?")
@@ -250,12 +245,16 @@ public class QuizActivity extends AppCompatActivity {
                         finish();
                     }
                 })
-                .setNegativeButton("Non", null)
+                .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        resumeTimer();
+                    }
+                })
                 .show();
     }
 
-    private void startTimer(){
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis,1000) {
+    private void startTimer(long timeLengthMilli){
+        mCountDownTimer = new CountDownTimer(timeLengthMilli,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                mTimeLeftInMillis = millisUntilFinished;
@@ -270,17 +269,21 @@ public class QuizActivity extends AppCompatActivity {
 
                 questionIndex++;
 
+                for(Button button : reponsesBtn)
+                    button.setClickable(false);
+
+                showGoodAnswer();
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if (questionIndex < questions.size())
                             displayQuestion();
-
                         else{
                             displayResult();}
                     }
 
-                }, 500);
+                }, 800);
 
                 resetTimer();
             }
@@ -290,20 +293,47 @@ public class QuizActivity extends AppCompatActivity {
         mTimerRunning = true;
     }
 
+    private void showGoodAnswer() {
+        Button rightButton = getGoodAnswerButton();
+        rightButton.getBackground().setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.goodAnswerBtn), PorterDuff.Mode.MULTIPLY));
+        rightButton.setTextColor(Color.parseColor("#ffffff"));
+    }
+
     private void updateCountDownText(){
 
-        qTimer.setText("Temps Restant : " + mTimeLeftInMillis / 1000 );
+        qTimer.setText("Temps restant : " + mTimeLeftInMillis / 1000 );
 
     }
 
-    private void pauseTimer(){
+    public void pauseTimer(){
+        Log.i("DIM", "Paused timer");
         mCountDownTimer.cancel();
         mTimerRunning = false;
-        Log.i("DIM", "Changed Timer to false");
+    }
+
+    public void resumeTimer(){
+        Log.i("DIM", "Resumed timer");
+        startTimer(mTimeLeftInMillis);
+        mTimerRunning = true;
     }
 
     private void resetTimer(){
-        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        Log.i("DIM", "Reset timer");
+        mTimeLeftInMillis = timeLengthMilli;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mTimerRunning && !pauseVisible)
+            pauseTimer();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!mTimerRunning && !pauseVisible)
+            resumeTimer();
     }
   
     @Override

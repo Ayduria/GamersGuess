@@ -25,7 +25,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-public class SettingsActivity extends DialogFragment {
+public class SettingsDialog extends DialogFragment {
 
     AudioManager audioManager;
 
