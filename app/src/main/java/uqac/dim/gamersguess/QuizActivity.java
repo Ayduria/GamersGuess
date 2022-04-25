@@ -168,6 +168,7 @@ public class QuizActivity extends AppCompatActivity {
         //Timer
         startTimer(timeLengthMilli);
         updateCountDownText();
+        qTimer.setTextColor(Color.WHITE);
     }
 
     private void manageAnswer(Button clickedButton) {
@@ -243,6 +244,8 @@ public class QuizActivity extends AppCompatActivity {
 
                 questionIndex++;
 
+                qTimer.setTextColor(Color.RED);
+
                 for(Button button : reponsesBtn)
                     button.setClickable(false);
 
@@ -275,6 +278,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private void resetTimer(){
         Log.i("DIM", "Reset timer");
+        //qTimer.setTextColor(Color.WHITE);
         mTimeLeftInMillis = timeLengthMilli;
     }
 
