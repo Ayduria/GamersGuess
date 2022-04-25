@@ -51,7 +51,7 @@ public class SettingsDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Log.i("DIM", "Settings menu");
-
+                ((MainMenuActivity)getActivity()).closeSettings();
                 dismiss();
             }
         });
