@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,9 +43,7 @@ public class PauseMenuDialog extends DialogFragment {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("DIM", "Closed pause menu");
-                ((QuizActivity)getActivity()).pauseVisible = false;
-                ((QuizActivity)getActivity()).resumeTimer();
+                ((QuizActivity)getActivity()).resumeGame();
                 dismiss();
             }
         });

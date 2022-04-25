@@ -50,7 +50,7 @@ public class SettingsDialog extends DialogFragment {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("DIM", "settings menu");
+                Log.i("DIM", "Settings menu");
 
                 dismiss();
             }

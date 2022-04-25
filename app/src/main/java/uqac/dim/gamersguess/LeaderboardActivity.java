@@ -1,6 +1,7 @@
 package uqac.dim.gamersguess;
 
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         bd = QuizBD.getDatabase(getApplicationContext());
         scores = bd.quizDao().getAllScores();
@@ -55,6 +57,8 @@ public class LeaderboardActivity extends AppCompatActivity {
     }
 
     private void displayScores() {
+        Log.i("DIM", "Display ranked scores");
+
         for (Score score : scores) {
 
             // Get difficulty full string
@@ -120,6 +124,8 @@ public class LeaderboardActivity extends AppCompatActivity {
     }
 
     private void displayNoScoreMessage() {
+        Log.i("DIM", "No scores to display");
+
         TableRow header = (TableRow)findViewById(R.id.leaderboardHeader);
         header.setVisibility(View.GONE);
 

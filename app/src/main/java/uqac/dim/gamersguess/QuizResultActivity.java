@@ -3,6 +3,8 @@ package uqac.dim.gamersguess;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -42,10 +44,20 @@ public class QuizResultActivity extends AppCompatActivity {
     String playerName;
     Button submitButton;
 
+    MediaPlayer errorSound;
+    MediaPlayer confirmSound;
+    MediaPlayer victorySound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizresult);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        // Sounds
+        errorSound = MediaPlayer.create(this, R.raw.denied_sound);
+        confirmSound = MediaPlayer.create(this, R.raw.confirm_sound);
+        victorySound = MediaPlayer.create(this, R.raw.victory_sound);
 
         //Confettis
         celebrationView = findViewById(R.id.celebrationView);
@@ -81,14 +93,15 @@ public class QuizResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(nameInput.getText())) {
+                    errorSound.start();
                     nameInput.setError("Votre nom est requis !");
-
                 } else {
                     Log.i("DIM", "New highscore submitted");
                     addNewScore();
                     nameInput.setVisibility(View.GONE);
                     submitButton.setVisibility(View.GONE);
                     findViewById(R.id.score_submitted).setVisibility(View.VISIBLE);
+                    confirmSound.start();
                 }
             }
         });
@@ -123,10 +136,13 @@ public class QuizResultActivity extends AppCompatActivity {
     }
 
     private void newHighScore() {
+        Log.i("DIM", "New highscore");
         TextView announcement = (TextView) findViewById(R.id.score_txt);
         bestScore = finalScore;
         announcement.setTextColor(Color.RED);
         announcement.setText(getResources().getString(R.string.newHighscore));
+
+        victorySound.start();
 
         // Funfettis for highscore
         celebrationView.build()

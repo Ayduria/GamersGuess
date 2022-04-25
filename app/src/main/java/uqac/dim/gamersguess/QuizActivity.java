@@ -54,6 +54,8 @@ public class QuizActivity extends AppCompatActivity {
     MediaPlayer goodAnswerSound;
     MediaPlayer wrongAnswerSound;
     MediaPlayer timesUpSound;
+    MediaPlayer pauseSound;
+    MediaPlayer unpauseSound;
 
     // Timer
     private TextView qTimer;
@@ -76,6 +78,8 @@ public class QuizActivity extends AppCompatActivity {
         goodAnswerSound = MediaPlayer.create(this,R.raw.good_answer);
         wrongAnswerSound = MediaPlayer.create(this,R.raw.wrong_answer);
         timesUpSound = MediaPlayer.create(this, R.raw.times_up_sound);
+        pauseSound = MediaPlayer.create(this, R.raw.pause_sound);
+        unpauseSound = MediaPlayer.create(this, R.raw.unpause_sound);
 
         // Get question field and answer buttons
         questionDisplay = (TextView)findViewById(R.id.question);
@@ -129,15 +133,7 @@ public class QuizActivity extends AppCompatActivity {
         pauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("DIM", "Paused game");
-
-                pauseVisible = true;
-
-                DialogFragment pauseFragment = new PauseMenuDialog();
-                pauseFragment.show(getSupportFragmentManager(), "pause");
-
-                if(mTimerRunning)
-                   pauseTimer();
+                pauseGame();
             }
         });
 
@@ -276,6 +272,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void displayResult() {
+        Log.i("DIM", "Quiz done");
         Intent intent = new Intent(QuizActivity.this, QuizResultActivity.class);
         intent.putExtra("score", ptsTotal);
         intent.putExtra("difficulte", difficulty);
@@ -302,6 +299,29 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    public void pauseGame() {
+        Log.i("DIM", "Paused game");
+
+        pauseVisible = true;
+        pauseSound.start();
+
+        DialogFragment pauseFragment = new PauseMenuDialog();
+        pauseFragment.show(getSupportFragmentManager(), "pause");
+
+        if(mTimerRunning)
+            pauseTimer();
+    }
+
+    public void resumeGame() {
+        Log.i("DIM", "Resumed game");
+
+        pauseVisible = false;
+        unpauseSound.start();
+
+        if (!mTimerRunning)
+            resumeTimer();
     }
 
     @Override

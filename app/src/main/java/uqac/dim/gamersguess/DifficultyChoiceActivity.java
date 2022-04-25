@@ -1,7 +1,10 @@
 package uqac.dim.gamersguess;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +17,7 @@ public class DifficultyChoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_difficultychoice);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         Button easyButton = (Button)findViewById(R.id.Button_easy);
         Button mediumButton = (Button)findViewById(R.id.Button_medium);
